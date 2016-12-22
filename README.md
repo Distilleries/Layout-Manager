@@ -13,10 +13,13 @@ Requires expendable with form-builder.
 ## Table of contents
 1. [Installation](#installation)
 2. [Basic usage](#basic-usage)
+    1. [Configuration](#1-configuration)
+    2. [Create templates](#2-create-templates)
 3. [Template Styling](#template-styling)
-4. [Using categories](#using-categories)
-5. [Custom tags](#custom-tags)
-6. [Troubleshooting](#troubleshooting)
+4. [Options](#options)
+    1. [Categories](#1-categories)
+    2. [Custom tags](#2-custom-tags)
+5. [Troubleshooting](#troubleshooting)
 
 ##Installation
 
@@ -122,6 +125,8 @@ php artisan vendor:publish --provider="Distilleries\FormBuilder\FormBuilderServi
 
 ##Basic usage
 
+###1. Configuration
+
 To enable the layout manager in one of you models, you need to update the model first.
 It should implements TemplatableContract and use TemplatableTrait
 
@@ -158,6 +163,10 @@ class ProjectForm extends Distilleries\FormBuilder\FormValidator
 
 The user will now be able to create/order/edit/remove content based on your own templates.
 
+
+
+###2. Create templates
+
 You can create your own templates on the related form in the back-office.
 Here is a description of each fields that compose a unique template:
 
@@ -171,6 +180,8 @@ Plugins   | TinyMCE Inline plugins you want to add when editing this template.
 Toolbar | TinyMCE Inline toolbar you want to display when editing this template.
 
 
+
+
 ##Template Styling
 
 Good practice is to re-use your frontend styling when using LayoutManager.
@@ -181,7 +192,9 @@ Create one unique `.sass` file for each template, and import this file on each f
 This way your style will be displayed on the backoffice as well as on your front.
 
 
-##Using categories
+##Options
+
+###1. Categories
 
 When adding content to your model based on your own templates, you may need to categorize them.
 For example, you may need to show your content within tabs. Each tabs can be defined as a category in LayoutManager.
@@ -214,7 +227,7 @@ class ProjectForm extends Distilleries\FormBuilder\FormValidator
 
 The `categories`'s key is the unique string saved in the database to match the category and the `categories`'s value is the text displayed to the contributor in the backoffice.
 
-##Custom tags
+###2. Custom tags
 
 Your frontend may use custom HTML tags (using VueJS or AngularJS).
 LayoutManager can parse these custom-tags and ask to the contributor to fill some datas.
