@@ -39,10 +39,10 @@ Add on your bower.json
 Add on your build.config.js
 
 ``` json
-    admin: {
-        app_files: {
-            js: {
-                'bower_components/sortablejs/Sortable.min.js',
+    "admin": {
+        "app_files": {
+            "js": {
+                "bower_components/sortablejs/Sortable.min.js",
             }
         }
     }
@@ -120,7 +120,7 @@ php artisan vendor:publish --provider="Distilleries\FormBuilder\FormBuilderServi
 ```
 
 
-###Basic usage
+##Basic usage
 
 To enable the layout manager in one of you models, you need to update the model first.
 It should implements TemplatableContract and use TemplatableTrait
@@ -171,7 +171,7 @@ Plugins   | TinyMCE Inline plugins you want to add when editing this template.
 Toolbar | TinyMCE Inline toolbar you want to display when editing this template.
 
 
-###Template Styling
+##Template Styling
 
 Good practice is to re-use your frontend styling when using LayoutManager.
 It will allow your contributors to edit content as if they were on the front-end.
@@ -181,7 +181,7 @@ Create one unique `.sass` file for each template, and import this file on each f
 This way your style will be displayed on the backoffice as well as on your front.
 
 
-###Using categories
+##Using categories
 
 When adding content to your model based on your own templates, you may need to categorize them.
 For example, you may need to show your content within tabs. Each tabs can be defined as a category in LayoutManager.
@@ -214,7 +214,7 @@ class ProjectForm extends Distilleries\FormBuilder\FormValidator
 
 The `categories`'s key is the unique string saved in the database to match the category and the `categories`'s value is the text displayed to the contributor in the backoffice.
 
-###Custom tags
+##Custom tags
 
 Your frontend may use custom HTML tags (using VueJS or AngularJS).
 LayoutManager can parse these custom-tags and ask to the contributor to fill some datas.
@@ -256,6 +256,6 @@ This way, every video-player attributes will be clickable in the back-office, a 
 The attribute's label is translated using `trans(forms.template.youtube_id)`.
 
 
-###Troubleshooting
+##Troubleshooting
 
 @TODO : Handle errors and prevent model form submiting when a template error occurs.
