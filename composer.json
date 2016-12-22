@@ -1,0 +1,35 @@
+{
+  "name": "distilleries/layout-manager",
+  "description": "Create and manage your own custom layouts with this simple widget based plugin.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jean-François Meinesz",
+      "email": "jfmeinesz@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.5.0",
+    "darkaonline/l5-swagger":"~3.0",
+    "distilleries/expendable": "2.13.*"
+  },
+  "require-dev": {
+    "orchestra/database": "~3.2",
+    "orchestra/testbench": "~3.2",
+    "phpunit/phpunit": "~4.5",
+    "mockery/mockery": "0.9.*",
+    "fzaninotto/faker": "1.4.*"
+  },
+  "autoload": {
+    "classmap": [
+      "tests"
+    ],
+    "psr-4": {
+      "Distilleries\\LayoutManager\\": "src/Distilleries/LayoutManager"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  }
+}

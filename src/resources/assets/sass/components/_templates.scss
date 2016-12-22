@@ -1,0 +1,63 @@
+
+#template {
+	.no-edit {
+		button, .add-template {
+			display:none !important;
+		}
+	}
+	.portlet.light {
+		.portlet-title {
+			cursor: default;
+		}
+
+		.btn-draggable {
+			cursor:move;
+		}
+	}
+
+	.template-select {
+		width: 250px;
+		display: inline-block;
+	}
+
+	.add-template {
+		.portlet-title {
+			margin: 0px;
+			border: none;
+			min-height: 0px;
+			* {
+				padding-bottom: 0px !important;
+			}
+		}
+	}
+}
+.templatable {
+	position:relative;
+	z-index: 1;
+	.template-image {
+		width: 200px;
+		height: 200px;
+		border: 1px solid rgba(128, 128, 128, 0.48);
+		cursor:pointer;
+		background-repeat: no-repeat;
+		background-size:cover;
+		background-position:center;
+		position: relative;
+		&:before {
+			content: "\f03e";
+			font-family: FontAwesome;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 10em;
+			text-decoration: none;
+			opacity: .2;
+			z-index: -1;
+			position: absolute;
+			text-align: center;
+			margin: auto;
+			width: 100%;
+			left: 0;
+			right: 0;
+		}
+	}
+}
