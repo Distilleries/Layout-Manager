@@ -3,7 +3,8 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 
-class LayoutManagerServiceProvider extends ServiceProvider {
+class LayoutManagerServiceProvider extends ServiceProvider
+{
 
 
     /**
@@ -15,6 +16,49 @@ class LayoutManagerServiceProvider extends ServiceProvider {
      */
     protected $namespace = 'Distilleries\LayoutManager\Http\Controllers';
 
+    protected $router;
+
+
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        parent::boot();
+
+        $this->loadViewsFrom(__DIR__ . '/../../views', 'layout-manager');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'layout-manager');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+        $this->publishes([
+            __DIR__ . '/../../config/config.php' => config_path('layout-manager.php')
+        ]);
+        $this->publishes([
+            __DIR__ . '/../../views' => base_path('resources/views/vendor/layout-manager'),
+        ], 'views');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/assets' => base_path('resources/assets/vendor/layout-manager'),
+        ], 'views');
+    }
+
+    /**
+     * Define the routes for the application.
+     *
+     * @return void
+     */
+    public function map()
+    {
+        \Route::group([
+            'middleware' => 'web',
+            'namespace'  => $this->namespace,
+        ], function ($router) {
+
+            require __DIR__ . '/../routes/web.php';
+        });
+    }
 
     /**
      * Register the service provider.
@@ -27,38 +71,5 @@ class LayoutManagerServiceProvider extends ServiceProvider {
             __DIR__ . '/../../config/config.php',
             'layout-manager'
         );
-    }
-
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-        $this->loadViewsFrom(__DIR__.'/../../views', 'layout-manager');
-        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'layout-manager');
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
-        $this->publishes([
-            __DIR__.'/../../config/config.php' => config_path('layout-manager.php')
-        ]);
-        $this->publishes([
-            __DIR__.'/../../views'             => base_path('resources/views/vendor/layout-manager'),
-        ], 'views');
-
-        $this->publishes([
-            __DIR__.'/../../resources/assets'             => base_path('resources/assets/vendor/layout-manager'),
-        ], 'views');
-    }
-
-    /**
-     * Define the routes for the application.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    public function map(Router $router)
-    {
-        $router->group(['namespace' => $this->namespace], function()
-        {
-            require __DIR__ . '/Http/routes.php';
-        });
     }
 }
