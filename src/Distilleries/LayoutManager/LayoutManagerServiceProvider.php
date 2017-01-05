@@ -26,8 +26,6 @@ class LayoutManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
         $this->loadViewsFrom(__DIR__ . '/../../views', 'layout-manager');
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'layout-manager');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
