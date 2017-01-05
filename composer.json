@@ -27,9 +27,6 @@
     ],
     "psr-4": {
       "Distilleries\\LayoutManager\\": "src/Distilleries/LayoutManager"
-    },
-    "files": [
-      "src/helpers.php"
-    ]
+    }
   }
 }

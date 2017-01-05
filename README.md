@@ -65,7 +65,7 @@ Add Service provider to `config/app.php`:
 ``` php
     'providers' => [
         // ...
-       'Distilleries\LayoutManager\LayoutManagerServiceProvider',
+       Distilleries\LayoutManager\LayoutManagerServiceProvider::class,
     ]
 ```
 
