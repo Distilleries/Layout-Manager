@@ -11,15 +11,19 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=5.5.0",
-    "darkaonline/l5-swagger":"~3.0",
-    "distilleries/expendable": "2.13.*"
+    "illuminate/support": "5.3.*",
+    "illuminate/database": "5.3.*",
+    "illuminate/translation": "5.3.*",
+    "distilleries/datatable-builder": "2.8.*",
+    "distilleries/form-builder": "2.8.*"
   },
   "require-dev": {
-    "orchestra/database": "~3.2",
-    "orchestra/testbench": "~3.2",
-    "phpunit/phpunit": "~4.5",
+    "orchestra/database": "~3.3",
+    "orchestra/testbench": "~3.3",
+    "phpunit/phpunit": "~4.7",
     "mockery/mockery": "0.9.*",
-    "fzaninotto/faker": "1.4.*"
+    "fzaninotto/faker": "1.5.*",
+    "distilleries/expendable": "2.13.*"
   },
   "autoload": {
     "classmap": [

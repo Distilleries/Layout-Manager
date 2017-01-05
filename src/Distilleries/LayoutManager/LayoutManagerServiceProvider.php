@@ -1,7 +1,7 @@
 <?php namespace Distilleries\LayoutManager;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\Router;
+use Illuminate\Foundation\AliasLoader;
 
 class LayoutManagerServiceProvider extends ServiceProvider
 {
@@ -70,6 +70,28 @@ class LayoutManagerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/config.php',
             'layout-manager'
+        );
+    }
+
+    public function alias() {
+
+        AliasLoader::getInstance()->alias(
+            'View',
+            'Illuminate\Support\Facades\View'
+        );
+
+        AliasLoader::getInstance()->alias(
+            'FormBuilder',
+            'Distilleries\FormBuilder\Facades\FormBuilder'
+        );
+
+        AliasLoader::getInstance()->alias(
+            'Datatable',
+            'Distilleries\DatatableBuilder\Facades\DatatableBuilder'
+        );
+        AliasLoader::getInstance()->alias(
+            'Route',
+            'Illuminate\Support\Facades\Route'
         );
     }
 }
