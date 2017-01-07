@@ -55,7 +55,7 @@ Import the sass into your application.admin.scss
 
 ``` sass
     // ...
-    @import "../../vendor/layout-manager/sass/layout-manager";
+    @import "../../../../vendor/distilleries/layout-manager/src/resources/assets/sass/layout-manager";
 ```
 
 run `composer update`.
