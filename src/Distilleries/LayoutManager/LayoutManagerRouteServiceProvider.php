@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-class LayoutManagerServiceProvider extends ServiceProvider
+class LayoutManagerRouteServiceProvider extends ServiceProvider
 {
 
 
