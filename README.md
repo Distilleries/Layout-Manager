@@ -45,7 +45,7 @@ Add on your build.config.js
     "admin": {
         "app_files": {
             "js": {
-                "bower_components/sortablejs/Sortable.min.js",
+                "bower_components/sortablejs/Sortable.min.js"
             }
         }
     }
@@ -66,6 +66,7 @@ Add Service provider to `config/app.php`:
     'providers' => [
         // ...
        Distilleries\LayoutManager\LayoutManagerServiceProvider::class,
+       Distilleries\LayoutManager\LayoutManagerRouteServiceProvider::class
     ]
 ```
 
