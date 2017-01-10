@@ -6,12 +6,6 @@ use Illuminate\Foundation\AliasLoader;
 class LayoutManagerServiceProvider extends ServiceProvider
 {
 
-
-  
-
-    protected $router;
-
-
     /**
      * Define your route model bindings, pattern filters, etc.
      *
