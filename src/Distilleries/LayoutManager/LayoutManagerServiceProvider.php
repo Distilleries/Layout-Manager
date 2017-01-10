@@ -21,11 +21,14 @@ class LayoutManagerServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../../views', 'layout-manager');
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'layout-manager');
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
 
         $this->publishes([
-            __DIR__ . '/../../config/config.php' => config_path('layout-manager.php')
+            __DIR__ . '/../../config/config.php'    => config_path('layout-manager.php'),
+            __DIR__ . '/../../database/migrations/' => base_path('/database/migrations'),
+            __DIR__ . '/../../database/seeds/'      => base_path('/database/seeds'),
         ]);
+        
         $this->publishes([
             __DIR__ . '/../../views' => base_path('resources/views/vendor/layout-manager'),
         ], 'views');

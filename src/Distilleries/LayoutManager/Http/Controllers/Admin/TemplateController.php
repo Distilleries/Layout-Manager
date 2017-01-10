@@ -8,6 +8,7 @@ use Distilleries\LayoutManager\Datatables\TemplateDatatable;
 use Distilleries\LayoutManager\Forms\TemplateForm;
 use Distilleries\LayoutManager\Template;
 
+
 class TemplateController extends BaseComponent
 {
     /**
