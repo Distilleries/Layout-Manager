@@ -19,10 +19,13 @@ class TemplatableForm extends FormValidator
             'custom-tags' => [],
         ];
         if (array_get($this->formOptions, 'categories')) {
-            $options['categories'] = (array_pull($this->formOptions, 'categories'));
+            $options['categories'] = $this->formOptions['categories'];
+        }
+        if (array_get($this->formOptions, 'templates')) {
+            $options['templates'] = $this->formOptions['templates'];
         }
         if (array_get($this->formOptions, 'custom-tags')) {
-            $options['custom-tags'] = (array_pull($this->formOptions, 'custom-tags'));
+            $options['custom-tags'] = $this->formOptions['custom-tags'];
         }
         $this
             ->add('templates', 'template', $options);
