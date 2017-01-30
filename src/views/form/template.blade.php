@@ -46,10 +46,10 @@
     </div>
 </div>
 <script type="x/template" id='portlet-template'>
-@include ('admin.form.template_portlet')
+@include ('layout-manager::form.template_portlet')
 </script>
 <script type="x/template" id='input-modal'>
-@include ('admin.form.template_input_modal')
+@include ('layout-manager::form.template_input_modal')
 </script>
 
 <script>
