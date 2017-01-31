@@ -1,7 +1,7 @@
 new Vue({
-    
+
     el: '#template',
-    
+
     data: function () {
         return {
             panels: null,
@@ -45,6 +45,10 @@ new Vue({
                 this.panels.sort(function (a, b) {
                     return $(".sortable .tab-pane[data-category='" + a.pivot.category + "']").index() > $(".sortable .tab-pane[data-category='" + b.pivot.category + "']").index();
                 });
+            } else {
+                this.panels.sort(function (a, b) {
+                    return $(".sortable .tab-pane").index() > $(".sortable .tab-pane").index();
+                });
             }
             for (var i = 0; i < this.panels.length; i++) {
                 // The pivot's order is updated
@@ -68,7 +72,7 @@ new Vue({
                 }
             });
             var cat = select.data('category');
-            if (templateFound ) {
+            if (templateFound) {
                 var extension = {
                     'pivot': {
                         'html': templateFound.html,

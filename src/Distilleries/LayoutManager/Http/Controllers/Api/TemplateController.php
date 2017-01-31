@@ -64,26 +64,28 @@ class TemplateController extends ApiController
      */
     public function postSave(SaveTemplatable $request)
     {
-        $templatables = $request->get('templatables');
-        $templatableId = $request->get('templatable_id');
+        $templatables    = $request->get('templatables');
+        $templatableId   = $request->get('templatable_id');
         $templatableType = $request->get('templatable_type');
 
-        if (! UserUtils::isBackendRole() or ! is_array($templatables) or ! $templatableId or ! $templatableType) {
+        if (!UserUtils::isBackendRole() or !is_array($templatables) or !$templatableId or !$templatableType) {
             abort(404);
         }
 
         Templatable::where('templatable_id', '=', $templatableId)->where('templatable_type', '=', $templatableType)->delete();
-        
-        foreach($templatables as $template) {
-            Templatable::create([
-                'templatable_id' => $templatableId,
-                'templatable_type' => $templatableType,
-                'template_id' => $template['pivot']['template_id'],
-                'category' => array_key_exists('category', $template['pivot']) ? $template['pivot']['category'] : '',
-                'order' => $template['pivot']['order'],
-                'html' => $template['pivot']['html'],
-                'status' => true,
-            ]);
+
+        foreach ($templatables as $template) {
+            if (!empty($template['pivot']['html'])) {
+                Templatable::create([
+                    'templatable_id'   => $templatableId,
+                    'templatable_type' => $templatableType,
+                    'template_id'      => $template['pivot']['template_id'],
+                    'category'         => array_key_exists('category', $template['pivot']) ? $template['pivot']['category'] : '',
+                    'order'            => $template['pivot']['order'],
+                    'html'             => $template['pivot']['html'],
+                    'status'           => true,
+                ]);
+            }
         }
 
         // @TODO: Add a error handling with a popup to the user that cancel the form submittion in case of templatable error
