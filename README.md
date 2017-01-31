@@ -18,7 +18,8 @@ Requires expendable with form-builder.
 3. [Template Styling](#template-styling)
 4. [Options](#options)
     1. [Categories](#1-categories)
-    2. [Custom tags](#2-custom-tags)
+    2. [Filter templates](#1-filter-templates)
+    3. [Custom tags](#2-custom-tags)
 5. [Troubleshooting](#troubleshooting)
 
 ##Installation
@@ -228,7 +229,36 @@ class ProjectForm extends Distilleries\FormBuilder\FormValidator
 
 The `categories`'s key is the unique string saved in the database to match the category and the `categories`'s value is the text displayed to the contributor in the backoffice.
 
-###2. Custom tags
+###2. Filter templates
+
+The dropdown-list of all the templates the contributor is allowed to add displays ALL the templates by default.
+You can pre-filter this list to allow only a preset of the templates.
+Just pass an array of Templates of you own choice in your model's form class:
+
+
+``` php
+class ProjectForm extends Distilleries\FormBuilder\FormValidator
+{
+    // ...
+    public function buildForm()
+    {
+    // ...
+        $this->add('templatable', 'form', [
+             'label' => trans('layout-manager::form.templatable'),
+             'icon'  => 'link',
+             'class' => FormBuilder::create('Distilleries\LayoutManager\Forms\TemplatableForm', [
+                 'model' => $this->model,
+                 'templates' => Template::whereIn('css_class', ['bo-banner-image', 'bo-underlined-header'])->get()
+             ]),
+        ]);
+    }
+    // ...
+}
+```
+The above example will allow the contributor to add only Templates with css class `bo-banner-image` and `bo-underlined-header`.
+
+
+###3. Custom tags
 
 Your frontend may use custom HTML tags (using VueJS or AngularJS).
 LayoutManager can parse these custom-tags and ask to the contributor to fill some datas.
