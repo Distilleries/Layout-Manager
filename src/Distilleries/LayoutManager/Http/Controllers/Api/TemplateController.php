@@ -2,7 +2,7 @@
 
 namespace Distilleries\LayoutManager\Http\Controllers\Api;
 
-
+use Distilleries\Expendable\Helpers\UserUtils;
 use Distilleries\LayoutManager\Http\Requests\Templatable\SaveTemplatable;
 use Distilleries\LayoutManager\Templatable;
 
@@ -68,7 +68,7 @@ class TemplateController extends ApiController
         $templatableId = $request->get('templatable_id');
         $templatableType = $request->get('templatable_type');
 
-        if (! UserUtil::isBackendRole() or ! is_array($templatables) or ! $templatableId or ! $templatableType) {
+        if (! UserUtils::isBackendRole() or ! is_array($templatables) or ! $templatableId or ! $templatableType) {
             abort(404);
         }
 
@@ -79,7 +79,7 @@ class TemplateController extends ApiController
                 'templatable_id' => $templatableId,
                 'templatable_type' => $templatableType,
                 'template_id' => $template['pivot']['template_id'],
-                'category' => $template['pivot']['category'],
+                'category' => array_key_exists('category', $template['pivot']) ? $template['pivot']['category'] : '',
                 'order' => $template['pivot']['order'],
                 'html' => $template['pivot']['html'],
                 'status' => true,

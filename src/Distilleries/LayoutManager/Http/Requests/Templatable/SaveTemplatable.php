@@ -19,4 +19,8 @@ class SaveTemplatable extends FormRequest
             'templatable_id'   => 'required|numeric',
         ];
     }
+
+    public function authorize() {
+        return true;
+    }
 }
