@@ -24,6 +24,9 @@ class TemplatableForm extends FormValidator
         if (array_get($this->formOptions, 'templates')) {
             $options['templates'] = $this->formOptions['templates'];
         }
+        if (array_get($this->formOptions, 'disableAdd')) {
+            $options['disableAdd'] = $this->formOptions['disableAdd'];
+        }
         if (array_get($this->formOptions, 'custom-tags')) {
             $options['custom-tags'] = $this->formOptions['custom-tags'];
         }

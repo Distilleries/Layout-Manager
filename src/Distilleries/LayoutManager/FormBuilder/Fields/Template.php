@@ -25,6 +25,7 @@ class Template extends FormFieldsView
     {
         return [
             'templates' => \Distilleries\LayoutManager\Template::all(),
+            'disableAdd' => false,
         ];
     }
 }
