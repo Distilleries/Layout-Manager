@@ -18,8 +18,10 @@ Requires expendable with form-builder.
 3. [Template Styling](#template-styling)
 4. [Options](#options)
     1. [Categories](#1-categories)
-    2. [Filter templates](#1-filter-templates)
-    3. [Custom tags](#2-custom-tags)
+    2. [Filter templates](#2-filter-templates)
+    3. [Custom tags](#3-custom-tags)
+    4. [Disable add and ordering](#4-disable-add-and-ordering)
+    5. [Special classes](#5-special-classes)
 5. [Troubleshooting](#troubleshooting)
 
 ##Installation
@@ -298,6 +300,41 @@ class ProjectForm extends Distilleries\FormBuilder\FormValidator
 
 This way, every video-player attributes will be clickable in the back-office, a modal will appear that will ask the user to fill `youtube_id`.
 The attribute's label is translated using `trans(forms.template.youtube_id)`.
+
+###4. Disable add and ordering
+
+If you want your contributors to edit a pre-defined number of templates, and you don't want them to be able to add, duplicate or reorder the templates, you can use the `disableAdd` option.
+It can be set either to `true`, or to an array of categories (keys) to only disable it for a list of categories.
+``` php
+class ProjectForm extends Distilleries\FormBuilder\FormValidator
+{
+    // ...
+    public function buildForm()
+    {
+    // ...
+        $this->add('templatable', 'form', [
+             'label' => trans('layout-manager::form.templatable'),
+             'icon'  => 'link',
+             'class' => FormBuilder::create('Distilleries\LayoutManager\Forms\TemplatableForm', [
+                 'model' => $this->model,
+                 'disableAdd' => ['summary'],
+                 'categories' => [
+                     'summary' => 'Summary of the project',
+                     'authors' => 'Authors and credits',
+                 ]
+             ]),
+        ]);
+    }
+    // ...
+}
+```
+This configuration will disable the add/duplicate/order feature only for the templates under 'summary' category.
+
+###5. Special classes
+
+#### Image
+If you define a `<div>` (or any tag you want) with the CSS class `template-image`, Layout Manager will recognize it and render it as a clickable container.
+MoxiManager will open on-click and allow the contributor to choose an image that will be displayed in the `background-url` style of the tag.
 
 
 ##Troubleshooting
