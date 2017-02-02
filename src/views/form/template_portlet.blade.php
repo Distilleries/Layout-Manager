@@ -15,9 +15,11 @@
             <button type="button" class="btn btn-circle btn-default" v-on:click='reset()' >
                 <i class="fa fa-eraser"></i> Reset
             </button>
+            @if (!isset($disableAdd) || !$disableAdd)
             <button type="button" class="btn btn-circle btn-icon-only btn-default btn-draggable ">
                 <i class="fa fa-arrows"></i>
             </button>
+            @endif
             <button type="button" class="btn btn-circle btn-icon-only btn-default fullscreen">
             </button>
         </div>
