@@ -5,21 +5,17 @@
             <span class="caption-subject">  @{{panel.libelle}}</span>
         </div>
         <div class="actions">
-            @if (!isset($disableAdd) || !$disableAdd)
-                <button type="button" class="btn btn-circle red-sunglo " v-on:click='remove()'>
-                    <i class="fa fa-close"></i> Supprimer </button>
-                <button type="button" class="btn btn-circle btn-default" v-on:click='duplicate()'>
-                    <i class="fa fa-clone"></i> Dupliquer
-                </button>
-            @endif
+            <button type="button" class="btn btn-circle red-sunglo " v-on:click='remove()' v-if="disabledAdd(panel.pivot.category)">
+                <i class="fa fa-close"></i> Supprimer </button>
+            <button type="button" class="btn btn-circle btn-default" v-on:click='duplicate()' v-if="disabledAdd(panel.pivot.category)">
+                <i class="fa fa-clone"></i> Dupliquer
+            </button>
             <button type="button" class="btn btn-circle btn-default" v-on:click='reset()' >
                 <i class="fa fa-eraser"></i> Reset
             </button>
-            @if (!isset($disableAdd) || !$disableAdd)
-            <button type="button" class="btn btn-circle btn-icon-only btn-default btn-draggable ">
+            <button type="button" class="btn btn-circle btn-icon-only btn-default btn-draggable" v-if="disabledAdd(panel.pivot.category)">
                 <i class="fa fa-arrows"></i>
             </button>
-            @endif
             <button type="button" class="btn btn-circle btn-icon-only btn-default fullscreen">
             </button>
         </div>

@@ -29,6 +29,12 @@ var TemplatePortlet = Vue.extend({
     },
 
     methods: {
+        disabledAdd: function (category) {
+            if (window.disableAdd === false) return true;
+            if (window.disableAdd === true) return false;
+            if ($.inArray(category, window.disableAdd) >=0) return false;
+            return true;
+        },
         reset: function () {
             $('#confirmationModal').modal('show');
             $('#confirmationModal #confirmationButton').off('click').on('click', function () {
