@@ -19,7 +19,7 @@ var TemplatePortlet = Vue.extend({
             }
             return this._contentID;
         },
-        
+
         'guid': function () {
             if (!this.panel.guid) {
                 this.panel.guid = this.generateGuid();
@@ -82,8 +82,9 @@ var TemplatePortlet = Vue.extend({
                 toolbar: this.panel.toolbar,
                 convert_urls: false,
                 verify_html: false,
-                extended_valid_elements: validExtentions,
+                extended_valid_elements: validExtentions + (validExtentions == '' ? ''  : ',' ) + '+div[*],+a[*],+span[*]' ,
                 custom_elements: validExtentions,
+                valid_children: '+a[h1|h2|h3|h4|h5|h6|p|span|div|img]',
                 plugins: this.panel.plugins ? this.panel.plugins : [],
                 init_instance_callback: function (editor) {
                     editor.on('blur', function (e) {
