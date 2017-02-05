@@ -46,6 +46,7 @@ var TemplatePortlet = Vue.extend({
             sliderContainer.html(slidesArray.join(''));
             tinymce.get(this.contentID).setContent($("<div />").append(sliderContainer.clone()).html());
             this.showSlide(this.sliderIndex);
+            tinymce.get(this.contentID).focus();
         },
         reset: function () {
             $('#confirmationModal').modal('show');

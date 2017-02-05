@@ -32,6 +32,7 @@ var SliderModal = Vue.extend({
             this.callbackUpdate = callbackUpdate;
             this.slides = [];
             $(container).find('.template-slide').each(function(i,e){
+                $(e).show();
                 this.slides.push(this.getFullHtml(e));
             }.bind(this));
             this.container = this.getFullHtml(container);
