@@ -8,7 +8,9 @@ var TemplatePortlet = Vue.extend({
         return {
             panel: null,
             _contentID: null,
-            resetContent: null
+            resetContent: null,
+            sliderIndex:0,
+            sliderEnabled: false
         };
     },
 
@@ -34,6 +36,16 @@ var TemplatePortlet = Vue.extend({
             if (window.disableAdd === true) return false;
             if ($.inArray(category, window.disableAdd) >=0) return false;
             return true;
+        },
+        showSlideDetails: function() {
+            this.$parent.$broadcast('openSliderModal', tinymce.get(this.contentID).getContent(), this.updateAllSlides.bind(this));
+        },
+        updateAllSlides: function(slidesArray) {
+            var sliderContainer = $(tinymce.get(this.contentID).getContent());
+            sliderContainer.find('.template-slide').parent().empty();
+            sliderContainer.html(slidesArray.join(''));
+            tinymce.get(this.contentID).setContent($("<div />").append(sliderContainer.clone()).html());
+            this.showSlide(this.sliderIndex);
         },
         reset: function () {
             $('#confirmationModal').modal('show');
@@ -100,11 +112,40 @@ var TemplatePortlet = Vue.extend({
 
         generateGuid: function () {
             return this.hash() + this.hash() + '-' + this.hash() + '-' + this.hash() + '-' + this.hash() + '-' + this.hash() + this.hash() + this.hash();
+        },
+
+        initSlider: function() {
+            this.sliderEnabled = $(this.panel.pivot.html).find('.template-slide').length > 0;
+            if (this.sliderEnabled) {
+                this.showSlide(this.sliderIndex);
+            }
+        },
+
+        previousSlide: function() {
+            var max = $(this.$el).find('.template-slide').length;
+            if (this.sliderIndex > 0) {
+                this.sliderIndex--;
+                this.showSlide(this.sliderIndex);
+            }
+        },
+        nextSlide: function() {
+            var max = $(this.$el).find('.template-slide').length;
+            if (this.sliderIndex < (max -1)) {
+                this.sliderIndex++;
+                this.showSlide(this.sliderIndex);
+            }
+        },
+
+        showSlide: function(index) {
+            $(this.$el).find('.template-slide').hide();
+            $(this.$el).find('.template-slide:nth-child('+ (index + 1 )+')').show();
         }
     },
 
+
     ready: function () {
         this.initTinyMCE();
+        this.initSlider();
     }
 
 });

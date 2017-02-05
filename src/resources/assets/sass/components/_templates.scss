@@ -5,6 +5,9 @@
 			display:none !important;
 		}
 	}
+	.btn-slider-next {
+		margin-right: 25px;
+	}
 	.portlet.light {
 		.portlet-title {
 			cursor: default;
@@ -36,8 +39,6 @@
 	z-index: 1;
 	text-align: left;
 	.template-image {
-		width: 200px;
-		height: 200px;
 		border: 1px solid rgba(128, 128, 128, 0.48);
 		cursor:pointer;
 		background-repeat: no-repeat;
@@ -59,6 +60,26 @@
 			width: 100%;
 			left: 0;
 			right: 0;
+		}
+	}
+}
+
+#sliderModal{
+	.sortable {
+		.sortable-slide-container {
+			background-color: rgba(207, 207, 207, 0.51);
+			position: relative;
+			.sortable-slide {
+				width:calc(100% - 20px);
+				pointer-events: none;
+			}
+			.remove-slide {
+				position: absolute;
+				width: 16px;
+				right: 0px;
+				top: 0px;
+				cursor:pointer;
+			}
 		}
 	}
 }

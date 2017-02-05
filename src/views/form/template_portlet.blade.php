@@ -5,6 +5,17 @@
             <span class="caption-subject">  @{{panel.libelle}}</span>
         </div>
         <div class="actions">
+            <button type="button" class="btn-slider-prev btn btn-circle purple-studio " v-on:click='previousSlide()' v-if="sliderEnabled">
+                <i class="fa fa-angle-left"></i> Précédent
+            </button>
+            <button type="button" class="btn-slider-detail btn btn-circle grey " v-on:click='showSlideDetails()' v-if="sliderEnabled">
+                <i class="fa fa-list-ol"></i> Liste
+            </button>
+            <button type="button" class="btn-slider-next btn btn-circle purple-studio" v-on:click='nextSlide()' v-if="sliderEnabled">
+                <i class="fa fa-angle-right"></i> Suivant
+            </button>
+
+
             <button type="button" class="btn btn-circle red-sunglo " v-on:click='remove()' v-if="disabledAdd(panel.pivot.category)">
                 <i class="fa fa-close"></i> Supprimer </button>
             <button type="button" class="btn btn-circle btn-default" v-on:click='duplicate()' v-if="disabledAdd(panel.pivot.category)">

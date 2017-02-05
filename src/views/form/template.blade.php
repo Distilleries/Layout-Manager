@@ -29,6 +29,7 @@
                 </div>
         </div>
         <input-modal v-if="panels" ></input-modal>
+        <slider-modal v-if="panels" ></slider-modal>
     </div>
 
 
@@ -50,6 +51,9 @@
     </script>
     <script type="x/template" id='input-modal'>
         @include ('layout-manager::form.template_input_modal')
+    </script>
+    <script type="x/template" id='slider-modal'>
+        @include ('layout-manager::form.template_slider_modal')
     </script>
 
     <script>

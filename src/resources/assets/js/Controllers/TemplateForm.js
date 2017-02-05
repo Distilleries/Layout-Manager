@@ -154,8 +154,12 @@ new Vue({
                 moxman.browse({
                     no_host: true,
                     oninsert: function (moxi) {
-                        $(this).css('backgroundImage', 'url("' + moxi.focusedFile.path + '")');
-                        $(this).attr('data-mce-style', 'background-image: url("' + moxi.focusedFile.path + '");');
+                        if ($(this).is('img')) {
+                            $(this).attr('src', moxi.focusedFile.path);
+                        } else {
+                            $(this).css('backgroundImage', 'url("' + moxi.focusedFile.path + '")');
+                            $(this).attr('data-mce-style', 'background-image: url("' + moxi.focusedFile.path + '");');
+                        }
                         tinyMCE.activeEditor.focus();
                     }.bind(this)
                 });
