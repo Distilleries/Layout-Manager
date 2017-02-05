@@ -41,12 +41,13 @@ var TemplatePortlet = Vue.extend({
             this.$parent.$broadcast('openSliderModal', tinymce.get(this.contentID).getContent(), this.updateAllSlides.bind(this));
         },
         updateAllSlides: function(slidesArray) {
-            var sliderContainer = $(tinymce.get(this.contentID).getContent());
-            sliderContainer.find('.template-slide').parent().empty();
+            var component = $(tinymce.get(this.contentID).getContent());
+            var sliderContainer = component.find('.template-slide').parent();
+            sliderContainer.empty();
             sliderContainer.html(slidesArray.join(''));
-            tinymce.get(this.contentID).setContent($("<div />").append(sliderContainer.clone()).html());
+            tinymce.get(this.contentID).setContent($("<div />").append(component.clone()).html());
             this.showSlide(this.sliderIndex);
-            tinymce.get(this.contentID).focus();
+            tinymce.get(this.contentID).focus();o
         },
         reset: function () {
             $('#confirmationModal').modal('show');

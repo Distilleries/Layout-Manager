@@ -6,6 +6,7 @@ var SliderModal = Vue.extend({
         return {
             inputs: [],
             slides: null,
+            slideTemplate: null,
             callbackUpdate: null
         };
     },
@@ -35,6 +36,7 @@ var SliderModal = Vue.extend({
                 $(e).show();
                 this.slides.push(this.getFullHtml(e));
             }.bind(this));
+            this.slideTemplate = this.getFullHtml(this.slides[0]);
             this.container = this.getFullHtml(container);
             $(this.slides[0]).find('.template-image').each(function (i, e) {
                 this.inputs.push({'trans': $(e).data('title'), 'upload': true, 'value': '', 'css': '.template-image', 'id': i});
@@ -74,7 +76,7 @@ var SliderModal = Vue.extend({
         },
 
         addSlide: function () {
-            var newSlide = $(this.getFullHtml(this.slides[0]));
+            var newSlide = $(this.getFullHtml(this.slideTemplate));
             $.each(this.inputs, function (i, e) {
                 var update = $($(newSlide).find(e.css).get(e.id));
                 if (update.is('img')) {
