@@ -6,6 +6,7 @@ var SliderModal = Vue.extend({
         return {
             inputs: [],
             slides: null,
+            cssClass: null,
             slideTemplate: null,
             callbackUpdate: null
         };
@@ -28,9 +29,10 @@ var SliderModal = Vue.extend({
             return this.getFullHtml(slide);
         },
 
-        openSliderModal: function (container, callbackUpdate) {
+        openSliderModal: function (container, cssClass, callbackUpdate) {
             this.inputs = [];
             this.callbackUpdate = callbackUpdate;
+            this.cssClass = cssClass;
             this.slides = [];
             $(container).find('.template-slide').each(function(i,e){
                 $(e).show();

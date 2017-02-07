@@ -38,6 +38,12 @@
 	position:relative;
 	z-index: 1;
 	text-align: left;
+	.template-slide {
+		display:none;
+		&.template-slide-show {
+			display: block;
+		}
+	}
 	.template-image {
 		border: 1px solid rgba(128, 128, 128, 0.48);
 		cursor:pointer;
@@ -62,6 +68,9 @@
 }
 
 #sliderModal{
+	.modal-dialog {
+		width: 1000px;
+	}
 	.sortable {
 		.sortable-slide-container {
 			background-color: rgba(207, 207, 207, 0.51);

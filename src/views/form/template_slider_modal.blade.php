@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="sortable">
                             <div class="sortable-slide-container" v-if="slides" v-for="(key, slide) in slides">
-                                <div class="sortable-slide" v-html="showSlideWithContainer(slide)">
+                                <div class="sortable-slide templatable" v-bind:class="cssClass" v-html="showSlideWithContainer(slide)">
                                 </div>
                                 <div class="remove-slide" v-on:click="remove(key)"><span class="fa fa-close"></span></div>
                             </div>

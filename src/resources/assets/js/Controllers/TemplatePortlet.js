@@ -38,7 +38,7 @@ var TemplatePortlet = Vue.extend({
             return true;
         },
         showSlideDetails: function() {
-            this.$parent.$broadcast('openSliderModal', tinymce.get(this.contentID).getContent(), this.updateAllSlides.bind(this));
+            this.$parent.$broadcast('openSliderModal', tinymce.get(this.contentID).getContent(), this.panel.css_class, this.updateAllSlides.bind(this));
         },
         updateAllSlides: function(slidesArray) {
             var component = $(tinymce.get(this.contentID).getContent());
