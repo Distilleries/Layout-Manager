@@ -35,7 +35,7 @@ var SliderModal = Vue.extend({
             this.cssClass = cssClass;
             this.slides = [];
             $(container).find('.template-slide').each(function(i,e){
-                $(e).show();
+                $(e).addClass('template-slide-show');
                 this.slides.push(this.getFullHtml(e));
             }.bind(this));
             this.slideTemplate = this.getFullHtml(this.slides[0]);
