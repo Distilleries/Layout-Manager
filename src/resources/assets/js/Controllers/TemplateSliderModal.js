@@ -41,7 +41,7 @@ var SliderModal = Vue.extend({
             this.slideTemplate = this.getFullHtml(this.slides[0]);
             this.container = this.getFullHtml(container);
             $(this.slides[0]).find('.template-image').each(function (i, e) {
-                this.inputs.push({'trans': $(e).data('title'), 'upload': true, 'value': '', 'css': '.template-image', 'id': i});
+                this.inputs.push({'trans': $(e).data('title'), 'upload': true, 'value': '', 'css': '.' + $(e).attr('class').replace(/\s/g, '.'), 'id': i});
             }.bind(this));
 
             this.$nextTick(function () {
@@ -80,16 +80,16 @@ var SliderModal = Vue.extend({
         addSlide: function () {
             var newSlide = $(this.getFullHtml(this.slideTemplate));
             $.each(this.inputs, function (i, e) {
-                var update = $($(newSlide).find(e.css).get(e.id));
+                var update = $($(newSlide).find(e.css));
                 if (update.is('img')) {
                     update.attr('src', $('#slide_tag_'+ i).val());
                 } else {
-                    update.css('backgroundImage', "url('" + e.value + "')");
+                    update.css('backgroundImage', "url('" + $('#slide_tag_'+ i).val() + "')");
                 }
                 $('#slide_tag_'+ i).val('');
             }.bind(this));
 
-            this.slides.push(this.getFullHtml(newSlide));
+            this.slides.unshift(this.getFullHtml(newSlide));
             var newSlides = [];
             $.each(this.slides, function(i,e){
                 newSlides.push(e);

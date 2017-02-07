@@ -47,7 +47,7 @@ var TemplatePortlet = Vue.extend({
             sliderContainer.html(slidesArray.join(''));
             tinymce.get(this.contentID).setContent($("<div />").append(component.clone()).html());
             this.showSlide(this.sliderIndex);
-            tinymce.get(this.contentID).focus();o
+            tinymce.get(this.contentID).focus();
         },
         reset: function () {
             $('#confirmationModal').modal('show');
@@ -139,8 +139,8 @@ var TemplatePortlet = Vue.extend({
         },
 
         showSlide: function(index) {
-            $(this.$el).find('.template-slide').hide();
-            $(this.$el).find('.template-slide:nth-child('+ (index + 1 )+')').show();
+            $(this.$el).find('.template-slide').removeClass('template-slide-show');
+            $(this.$el).find('.template-slide:nth-child('+ (index + 1 )+')').addClass('template-slide-show');
         }
     },
 
