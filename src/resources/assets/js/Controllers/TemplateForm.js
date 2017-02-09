@@ -146,7 +146,11 @@ new Vue({
                 'templatables': this.panels,
                 'templatable_type': templatable_type,
                 'templatable_id': templatable_id
+            }).then(function(){
+                $("#template").parents('form').off('submit').submit();
             });
+            e.preventDefault();
+            return false;
         },
 
         initImageHandler: function () {
