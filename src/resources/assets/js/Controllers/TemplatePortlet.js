@@ -73,8 +73,10 @@ var TemplatePortlet = Vue.extend({
         },
 
         blurred: function () {
-            this.panel.pivot.html = tinymce.get(this.contentID).getContent();
-            this.$dispatch('onEdit', this.panel);
+            if (this.contentID) {
+                this.panel.pivot.html = tinymce.get(this.contentID).getContent();
+                this.$dispatch('onEdit', this.panel);
+            }
         },
 
         initTinyMCE: function () {
@@ -87,19 +89,21 @@ var TemplatePortlet = Vue.extend({
                 validExtentions = validExtentions + key + 'end' + ',' + key + 'start';
                 j++;
             });
+            this._contentID = jQuery('#' + this.guid + ' .portlet-body .templatable').attr('id');
 
             tinymce.init({
                 selector: '#' + this.guid + ' .portlet-body .templatable',
                 inline: true,
                 menubar: false,
                 forced_root_block: false,
+                paste_as_text: true,
                 toolbar: this.panel.toolbar,
                 convert_urls: false,
                 verify_html: false,
                 extended_valid_elements: validExtentions + (validExtentions == '' ? ''  : ',' ) + '+div[*],+a[*],+span[*]' ,
                 custom_elements: validExtentions,
                 valid_children: '+a[h1|h2|h3|h4|h5|h6|p|span|div|img]',
-                plugins: this.panel.plugins ? this.panel.plugins : [],
+                plugins: this.panel.plugins ? 'paste,' + this.panel.plugins : 'paste',
                 init_instance_callback: function (editor) {
                     editor.on('blur', function (e) {
                         this.blurred();
