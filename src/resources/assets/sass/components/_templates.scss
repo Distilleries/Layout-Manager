@@ -11,6 +11,14 @@
 	.portlet.light {
 		.portlet-title {
 			cursor: default;
+			input.libelle {
+				float: left;
+				width: auto;
+				margin-left: 20px;
+				vertical-align: middle;
+				padding-left: 7px;
+				margin-top: 3px;
+			}
 		}
 
 		.btn-draggable {

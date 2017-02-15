@@ -83,6 +83,7 @@ class TemplateController extends ApiController
                     'category'         => array_key_exists('category', $template['pivot']) ? $template['pivot']['category'] : '',
                     'order'            => $template['pivot']['order'],
                     'html'             => $template['pivot']['html'],
+                    'libelle'          => (array_key_exists('libelle', $template['pivot']) ? $template['pivot']['libelle'] : null),
                     'status'           => true,
                 ]);
             }

@@ -9,6 +9,7 @@ use Distilleries\Expendable\Models\StatusTrait;
  * @property int $id
  * @property string $html
  * @property string $category
+ * @property string $libelle
  * @property int $order
  * @property bool $status
  * @property int $template_id
@@ -27,6 +28,7 @@ class Templatable extends BaseModel
     protected $fillable = [
         'html',
         'category',
+        'libelle',
         'order',
         'status',
         'template_id',

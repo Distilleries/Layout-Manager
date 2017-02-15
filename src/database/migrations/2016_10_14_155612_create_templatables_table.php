@@ -15,6 +15,7 @@ class CreateTemplatablesTable extends Migration
     {
         Schema::create('templatables', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('libelle')->nullable();
             $table->text('html');
             $table->string('category');
             $table->integer('status')->default(0);
