@@ -10,7 +10,8 @@ var TemplatePortlet = Vue.extend({
             _contentID: null,
             resetContent: null,
             sliderIndex:0,
-            sliderEnabled: false
+            sliderEnabled: false,
+            libelle: null
         };
     },
 
@@ -75,6 +76,9 @@ var TemplatePortlet = Vue.extend({
         blurred: function () {
             if (this.contentID) {
                 this.panel.pivot.html = tinymce.get(this.contentID).getContent();
+                if (this.libelle) {
+                    this.panel.pivot.libelle = this.libelle;
+                }
                 this.$dispatch('onEdit', this.panel);
             }
         },
@@ -152,6 +156,7 @@ var TemplatePortlet = Vue.extend({
     ready: function () {
         this.initTinyMCE();
         this.initSlider();
+        this.libelle = this.panel.pivot.libelle;
     }
 
 });

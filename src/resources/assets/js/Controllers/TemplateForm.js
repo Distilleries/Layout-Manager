@@ -112,6 +112,7 @@ new Vue({
             for (var i = 0; i < this.panels.length; i++) {
                 if (this.panels[i].guid == panel.guid) {
                     this.panels[i].pivot.html = panel.pivot.html;
+                    this.panels[i].pivot.libelle = panel.pivot.libelle;
                     break;
                 }
             }

@@ -4,7 +4,7 @@
             <i class="icon-speech font-green-sharp"></i>
             <span class="caption-subject">  @{{panel.libelle}}</span>
         </div>
-        <input v-if="panel.pivot.libelle" class="form-control font-green-sharp libelle " v-model="panel.pivot.libelle" type="text">
+        <input v-if="libelle" v-on:blur="blurred()" class="form-control font-green-sharp libelle " v-model="libelle" type="text">
         <div class="actions">
             <button type="button" class="btn-slider-prev btn btn-circle purple-studio " v-on:click='previousSlide()' v-if="sliderEnabled">
                 <i class="fa fa-angle-left"></i> Précédent
