@@ -4,7 +4,7 @@
             <i class="icon-speech font-green-sharp"></i>
             <span class="caption-subject">  @{{panel.libelle}}</span>
         </div>
-        <input v-if="panel.pivot.libelle" class="form-control font-green-sharp libelle " v-model="panel.pivot.libelle" type="text" value="Depuis près de 30 ans, Primevère vous aide à garder le contrôle sur votre cholestérol et entretenir votre santé cardiovasculaire." id="libelle">
+        <input v-if="panel.pivot.libelle" class="form-control font-green-sharp libelle " v-model="panel.pivot.libelle" type="text">
         <div class="actions">
             <button type="button" class="btn-slider-prev btn btn-circle purple-studio " v-on:click='previousSlide()' v-if="sliderEnabled">
                 <i class="fa fa-angle-left"></i> Précédent
