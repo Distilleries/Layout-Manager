@@ -10,7 +10,7 @@
                 <span class="caption-subject">Ajouter un template: </span>
             </div>
             <div class="actions">
-                <select class="template-select form-control" {{isset($key) ? 'data-category="'.$key.'"' : ''}}>
+                <select class="template-select form-control" {!! isset($key) ? 'data-category="'.$key.'"' : '' !!}>
                     @foreach($templates as $template)
                         <option value="{{$template->id}}">{{$template->libelle}}</option>
                     @endforeach
