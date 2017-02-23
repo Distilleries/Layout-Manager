@@ -47,7 +47,7 @@ new Vue({
         },
 
         reorder: function () {
-            if (window.categories.length > 0) {
+            if (!$.isEmptyObject(window.categories)) {
                 this.panels.sort(function (a, b) {
                     return $(".sortable .tab-pane[data-category='" + a.pivot.category + "']").index() > $(".sortable .tab-pane[data-category='" + b.pivot.category + "']").index();
                 });
