@@ -161,6 +161,7 @@ new Vue({
                     oninsert: function (moxi) {
                         if ($(this).is('img')) {
                             $(this).attr('src', moxi.focusedFile.path);
+                            $(this).attr('data-mce-src', moxi.focusedFile.path);
                         } else {
                             $(this).css('backgroundImage', 'url("' + moxi.focusedFile.path + '")');
                             $(this).attr('data-mce-style', 'background-image: url("' + moxi.focusedFile.path + '");');
