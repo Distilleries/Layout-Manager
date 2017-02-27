@@ -49,11 +49,11 @@ new Vue({
         reorder: function () {
             if (!$.isEmptyObject(window.categories)) {
                 this.panels.sort(function (a, b) {
-                    return $(".sortable .tab-pane[data-category='" + a.pivot.category + "']").index() > $(".sortable .tab-pane[data-category='" + b.pivot.category + "']").index();
+                    return $(".sortable .tab-pane[data-category='" + a.pivot.category + "']").index() - $(".sortable .tab-pane[data-category='" + b.pivot.category + "']").index();
                 });
             } else {
                 this.panels.sort(function (a, b) {
-                    return $(".sortable .tab-pane").index() > $(".sortable .tab-pane").index();
+                    return $(".sortable .tab-pane").index() - $(".sortable .tab-pane").index();
                 });
             }
             for (var i = 0; i < this.panels.length; i++) {
