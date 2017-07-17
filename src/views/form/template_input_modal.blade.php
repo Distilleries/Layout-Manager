@@ -5,7 +5,7 @@
                 <div class="form-group" v-for="tag in tags">
                     <label for="title" class="control-label col-md-3">@{{tag.trans}}</label>
                     <div class="col-md-9">
-                        <input class="form-control  validate[required]" id="@{{tag.id}}" name="@{{tag.id}}" type="text" v-model="tag.value">
+                        <input class="form-control  validate[required]" id="@{{tag.id}}" name="templatable[@{{tag.id}}]" type="text" v-model="tag.value">
                     </div>
                 </div>
             </div>

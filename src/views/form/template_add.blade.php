@@ -21,5 +21,5 @@
             </div>
         </div>
     </div>
-    <portlet-panel :panel="panel" v-for="(index, panel) in panels"  {!! isset($key) ? 'v-if="panel.pivot.category == \'' . $key . '\'"' : 'v-if="true"' !!}></portlet-panel>
+    <portlet-panel :panel="panel" v-for="(index, panel) in panels"  :key="index" {!! isset($key) ? 'v-if="panel.pivot.category == \'' . $key . '\'"' : 'v-if="true"' !!}></portlet-panel>
 </div>

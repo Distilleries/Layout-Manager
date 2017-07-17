@@ -13,7 +13,7 @@ new Vue({
         disabledAdd: function (category) {
             if (window.disableAdd === false) return true;
             if (window.disableAdd === true) return false;
-            if ($.inArray(category, window.disableAdd) >=0) return false;
+            if ($.inArray(category, window.disableAdd) >= 0) return false;
             return true;
         },
         initSortable: function () {
@@ -29,17 +29,10 @@ new Vue({
             }.bind(this));
         },
 
-        onSortEnd: function (event) {
-            this.lastScrollPos = $(window).scrollTop();
-            // For vueJS to handle the DOM changes, we need to update the this.panels array so VueJS will rerender the list
-            var offset = $(".sortable .tab-pane.active").prevAll('.tab-pane').children('.portlet-sortable').length;
-            // The DOM element is destroyed cause VueJS will recreated it
-            event.item.remove();
-            // The sorted element is moved at his new place in the this.panels array
-            var item = this.panels.splice(offset + event.oldIndex - 1, 1)[0];
-            this.panels.splice(offset + event.newIndex - 1, 0, item);
-            // Reorder will update the this.panels and trigger a vue compilation
-            this.$nextTick(this.reorder.bind(this));
+
+        onSortEnd: function (evt) {
+            this.panels.splice(evt.newIndex -1, 0, this.panels.splice(evt.oldIndex -1, 1)[0]);
+            this.refreshPivotOrders();
         },
 
         initAddTemplate: function () {
@@ -56,6 +49,13 @@ new Vue({
                     return $(".sortable .tab-pane").index() - $(".sortable .tab-pane").index();
                 });
             }
+            this.refreshPivotOrders();
+            this.$nextTick(function () {
+                $(window).scrollTop(this.lastScrollPos);
+            }.bind(this));
+        },
+
+        refreshPivotOrders: function() {
             for (var i = 0; i < this.panels.length; i++) {
                 // The pivot's order is updated
                 var newPivot = $.extend(true, {}, this.panels[i].pivot, {'order': i});
@@ -63,9 +63,6 @@ new Vue({
                 // The panels array MUST be tagged as dirty to trigger a vue rerendering
                 this.panels[i] = newPanel;
             }
-            this.$nextTick(function () {
-                $(window).scrollTop(this.lastScrollPos);
-            }.bind(this));
         },
 
         onAdd: function (e) {
@@ -147,7 +144,7 @@ new Vue({
                 'templatables': this.panels,
                 'templatable_type': templatable_type,
                 'templatable_id': templatable_id
-            }).then(function(){
+            }).then(function () {
                 $("#template").parents('form').off('submit').submit();
             });
             e.preventDefault();
@@ -166,6 +163,7 @@ new Vue({
                             $(this).css('backgroundImage', 'url("' + moxi.focusedFile.path + '")');
                             $(this).attr('data-mce-style', 'background-image: url("' + moxi.focusedFile.path + '");');
                         }
+                        tinyMCE.activeEditor.insertContent(tinyMCE.activeEditor.selection.getContent({format: 'html'}));
                         tinyMCE.activeEditor.focus();
                     }.bind(this)
                 });
