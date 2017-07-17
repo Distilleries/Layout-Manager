@@ -40,19 +40,7 @@ new Vue({
         },
 
         reorder: function () {
-            if (!$.isEmptyObject(window.categories)) {
-                this.panels.sort(function (a, b) {
-                    return $(".sortable .tab-pane[data-category='" + a.pivot.category + "']").index() - $(".sortable .tab-pane[data-category='" + b.pivot.category + "']").index();
-                });
-            } else {
-                this.panels.sort(function (a, b) {
-                    return $(".sortable .tab-pane").index() - $(".sortable .tab-pane").index();
-                });
-            }
             this.refreshPivotOrders();
-            this.$nextTick(function () {
-                $(window).scrollTop(this.lastScrollPos);
-            }.bind(this));
         },
 
         refreshPivotOrders: function() {
@@ -179,10 +167,20 @@ new Vue({
         }
     },
 
+    computed: {
+        "orderedPanels": function() {
+            this.panels.sort(function(a, b) {
+                if(a.pivot.order < b.pivot.order) return -1;
+                else if(b.pivot.order < a.pivot.order) return 1;
+                return 0;
+            });
+            return this.panels;
+        }
+    },
+
     ready: function () {
         Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         this.panels = window.templatables;
-        this.reorder();
         this.initSortable();
         this.initAddTemplate();
         this.initEvents();

@@ -2,7 +2,7 @@
 <div class="tab-pane active" >
     @else
 <div class="tab-pane {{$category == array_first($categories) ? 'active' : ''}}" data-category="{{$key}}" id="{{$key}}">
-@endif
+    @endif
     <div class="portlet light bordered add-template" v-if="disabledAdd('{{!empty($categories) ? $key : ''}}')">
         <div class="portlet-title">
             <div class="caption font-green-sharp">
@@ -21,5 +21,5 @@
             </div>
         </div>
     </div>
-    <portlet-panel :panel="panel" v-for="(index, panel) in panels"  :key="index" {!! isset($key) ? 'v-if="panel.pivot.category == \'' . $key . '\'"' : 'v-if="true"' !!}></portlet-panel>
+    <portlet-panel :panel="panel" v-for="(index, panel) in orderedPanels" :key="panel.pivot.order"  {!! isset($key) ? 'v-if="panel.pivot.category == \'' . $key . '\'"' : 'v-if="true"' !!}></portlet-panel>
 </div>
